@@ -19,11 +19,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
-" Run PlugInstall if there are missing plugins
-" autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-"   \| PlugInstall --sync | source $MYVIMRC
-" \| endif
-
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
@@ -104,9 +99,6 @@ set splitbelow splitright
 
 """"" COLORS """""
 
-" Enable true colors
-" set termguicolors
-
 " Enable syntax highlighting
 syntax enable
 
@@ -124,11 +116,14 @@ let g:colorizer_auto_filetype='css,html,yaml,conf'
 
 """"" TEXT """""
 
+" Hard wrap lines at 80 chararacters
+set tw=80
+
 " Use spaces instead of tabs
 set expandtab
 
 " Be smart about tabs
- set smarttab
+set smarttab
 
 " 4 space tabs and shifts
 set tabstop=4
@@ -136,7 +131,7 @@ set shiftwidth=4
 
 set autoindent "Auto indent
 filetype plugin indent on
-" set smartindent "Smart indent
+set smartindent "Smart indent
 set wrap "Wrap text
 
 """"" COMPLING """""
@@ -175,7 +170,6 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 augroup latex
     autocmd!
     autocmd FileType tex set spell
-    autocmd FileType tex set tw=80
     autocmd FileType tex nnoremap <leader>p :LLPStartPreview<CR>
     autocmd FileType tex nnoremap <leader>c :w! \| !latexmk -pdf %<CR><CR>
     autocmd VimLeave *.tex !texcleanup %

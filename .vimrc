@@ -10,6 +10,7 @@ let mapleader = " "
 
 " Enable the mouse in vim
 set mouse=a
+
 """"" PLUGINS """""
 
 " Install vim-plug if not found
@@ -43,6 +44,9 @@ Plug 'preservim/nerdtree'
 
 " Colors
 Plug 'chrisbra/Colorizer'
+
+" LaTeX Preview
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 " Initialize plugin system
 call plug#end()
@@ -100,6 +104,9 @@ set splitbelow splitright
 
 """"" COLORS """""
 
+" Enable true colors
+" set termguicolors
+
 " Enable syntax highlighting
 syntax enable
 
@@ -140,6 +147,10 @@ augroup stripwhitespace
     autocmd BufWritePre * :%s/\s\+$//e
 augroup END
 
+let g:livepreview_previewer = 'open -a skim'
+
+set updatetime=1000
+
 """"" KEYBINDS """""
 
 noremap <Up> <Nop>
@@ -157,3 +168,15 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Toggle nerdtree
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+augroup latex
+    autocmd!
+    autocmd FileType tex set spell
+    autocmd FileType tex set tw=80
+    autocmd FileType tex nnoremap <leader>p :LLPStartPreview<CR>
+    autocmd FileType tex nnoremap <leader>c :w! \| !latexmk -pdf %<CR><CR>
+    autocmd VimLeave *.tex !texcleanup %
+augroup END

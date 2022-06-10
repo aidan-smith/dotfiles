@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+# Add user scripts directory to path
+export PATH="$HOME/.local/bin:$PATH"
+
+# Set neovim as default editor
+export EDITOR="nvim"
+
+# Set default locations
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# Set program specific variables
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GOPATH="$XDG_DATA_HOME/go"
+export HISTFILE="$XDG_DATA_HOME/history"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"

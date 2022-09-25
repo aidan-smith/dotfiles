@@ -1,29 +1,29 @@
-local options = {
+vim.opt.mouse = 'a'
+vim.opt.undofile = true
 
-    mouse = 'a',
-    undofile = true,
+vim.opt.smartindent = true
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 
-    smartindent = true,
-    expandtab = true,
-    shiftwidth = 4,
-    tabstop = 4,
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
 
-    number = true,
-    relativenumber = true,
-    cursorline = true,
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
-    termguicolors = true,
-    showmode = false,
-}
+vim.opt.termguicolors = true
+vim.opt.showmode = false
 
-for k, v in pairs(options) do
-    vim.opt[k] = v
-end
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+vim.g.tmux_navigator_no_mappings = 1
 
 vim.g.material_style = "oceanic"
 vim.cmd 'colorscheme material'
 
--- vim.api.nvim_create_augroup("augroup", {clear = true})
 vim.api.nvim_create_augroup("augroup", {clear = true})
 
 -- Strip trailing whitespaces on save

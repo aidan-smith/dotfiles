@@ -14,7 +14,7 @@ export KEYTIMEOUT=1
 
 autoload -Uz compinit
 
-# Complete dotfiles
+# Autocomplete includes dotfiles
 _comp_options+=(globdots)
 
 # Allow select in menus

@@ -11,18 +11,23 @@ end
 -- Set leader to space
 vim.g.mapleader = ' '
 
--- Open Terminal
+-- Open terminal
 map('n', '<C-t>', ':term<CR>')
 
+-- Escape goes to normal mode in terminal
+map('t', '<Esc>', '<C-\\><C-n>')
+
 -- Toggle nvimtree
-map('n', '<C-n>', ':NvimTreeToggle<CR>')
+map('n', '<C-f>', ':NvimTreeFindFileToggle<CR>')
 
 -- Fuzzy find with telescope
-map('n', '<leader>f', '<cmd>Telescope find_files<cr>')
-map('n', '<leader>g', '<cmd>Telescope live_grep<cr>')
+map('n', '<leader>f', ':Telescope find_files<CR>')
+map('n', '<leader>g', ':Telescope live_grep<CR>')
+map('n', '<leader>b', ':Telescope buffers<CR>')
 
 -- Preview and compile shortcuts
 map('n', '<leader>p', ':w<CR>')
+-- map('n', '<leader>p', function() require("knap").toggle_autopreviewing() end)
 map('n', '<leader>c', ':w<CR>')
 
 -- Don't use arrow keys
@@ -31,14 +36,26 @@ map('', '<down>', '<nop>')
 map('', '<left>', '<nop>')
 map('', '<right>', '<nop>')
 
--- Move around splits using Ctrl + {h,j,k,l}
-map('n', '<C-h>', '<C-w>h')
-map('n', '<C-j>', '<C-w>j')
-map('n', '<C-k>', '<C-w>k')
-map('n', '<C-l>', '<C-w>l')
+-- Save buffer
+map('n', '<C-s>', ':w<CR>')
 
--- Moving around terminals
-map('t', '<C-h>', '<C-\\><C-n><C-w>h')
-map('t', '<C-j>', '<C-\\><C-n><C-w>j')
-map('t', '<C-k>', '<C-\\><C-n><C-w>k')
-map('t', '<C-l>', '<C-\\><C-n><C-w>l')
+-- Close splits
+map('n', '<C-d>', ':q<CR>')
+map('n', '!<C-d>', ':q!<CR>')
+
+-- Move between buffers
+map('n', '<C-p>', ':bn<CR>')
+map('n', '<C-n>', ':bp<CR>')
+
+-- Create splits
+map('n', '<leader>\\', ':vsplit<CR>')
+map('n', '<leader>-', ':split<CR>')
+
+-- Move around splits using Ctrl + {h,j,k,l}
+map('', '<C-h>', '<Esc>:TmuxNavigateLeft<CR>')
+map('', '<C-j>', '<Esc>:TmuxNavigateDown<CR>')
+map('', '<C-k>', '<Esc>:TmuxNavigateUp<CR>')
+map('', '<C-l>', '<Esc>:TmuxNavigateRight<CR>')
+
+-- Toggle ZenMode
+map('n', '<leader>z', ':ZenMode<CR>')

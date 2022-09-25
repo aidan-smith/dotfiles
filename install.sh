@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 DOTFILE_HOME=$(cd "$(dirname "$0")" ; pwd -P)
+# DOTFILE_HOME=$(readlink -f "$0")
 
 source "$DOTFILE_HOME/.zprofile"
 

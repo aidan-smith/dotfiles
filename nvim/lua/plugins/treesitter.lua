@@ -5,9 +5,11 @@ require('nvim-treesitter.configs').setup {
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = false,
 
+    -- Automatically install missing parsers when entering buffer
+    auto_install = true,
+
     -- List of parsers to ignore installing
     ignore_install = { "" },
-
 
     highlight = {
       -- `false` will disable the whole extension
@@ -24,7 +26,7 @@ require('nvim-treesitter.configs').setup {
     },
 
     indent = {
-        enable = true, 
+        enable = true,
         disable = { "yaml" },
     },
 }

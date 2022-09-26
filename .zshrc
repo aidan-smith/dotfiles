@@ -12,21 +12,28 @@ setopt autocd
 bindkey -v
 export KEYTIMEOUT=1
 
-autoload -Uz compinit
+# Prompt
+setopt prompt_subst
+autoload -U colors && colors
+PROMPT="%B%n@%m%b %~ %(!.#.$) "
+# if [[ -n "$VIRTUAL_ENV" ]] then
+#     RPROMPT="%($VIRTUAL_ENV%)"
+# fi
 
-# Autocomplete includes dotfiles
-_comp_options+=(globdots)
+# Load completions
+autoload -Uz compinit; compinit
 
 # Allow select in menus
 zstyle ':completion:*' menu select
 
 # Case insensitive matching
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-# Import completions
+# Load module for better completion listing
 zmodload zsh/complist
 
-compinit
+# Autocomplete includes dotfiles
+_comp_options+=(globdots)
 
 # Vim keys to navigate complete menu
 bindkey -M menuselect 'h' vi-backward-char
@@ -37,11 +44,12 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # Fix backspace in vim mode
 bindkey -v '^?' backward-delete-char
 
+alias e=$EDITOR
 alias vim="nvim"
 
 alias ls="ls -h --color=auto --group-directories-first"
 alias ll="ls -hl --color=auto --group-directories-first"
-alias la="ls -hla --color=auto --group-directories-first"
+alias la="ls -hlA --color=auto --group-directories-first"
 
 alias grep="grep --color=auto"
 alias egrep='egrep --color=auto'

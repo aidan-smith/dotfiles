@@ -42,6 +42,12 @@ return require('packer').startup(function(use)
     -- Auto-close certain characters
     use 'windwp/nvim-autopairs'
 
+    -- Snippets
+    use {
+        'L3MON4D3/LuaSnip',
+        tag = 'v<CurrentMajor>.*'
+    }
+
     -- Statusbar
     use 'nvim-lualine/lualine.nvim'
 

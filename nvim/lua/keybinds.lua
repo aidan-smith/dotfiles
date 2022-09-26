@@ -52,10 +52,10 @@ map('n', '<leader>\\', ':vsplit<CR>')
 map('n', '<leader>-', ':split<CR>')
 
 -- Move around splits using Ctrl + {h,j,k,l}
-map('', '<C-h>', '<Esc>:TmuxNavigateLeft<CR>')
-map('', '<C-j>', '<Esc>:TmuxNavigateDown<CR>')
-map('', '<C-k>', '<Esc>:TmuxNavigateUp<CR>')
-map('', '<C-l>', '<Esc>:TmuxNavigateRight<CR>')
+map('n', '<C-h>', ':TmuxNavigateLeft<CR>')
+map('n', '<C-j>', ':TmuxNavigateDown<CR>')
+map('n', '<C-k>', ':TmuxNavigateUp<CR>')
+map('n', '<C-l>', ':TmuxNavigateRight<CR>')
 
 -- Toggle ZenMode
 map('n', '<leader>z', ':ZenMode<CR>')

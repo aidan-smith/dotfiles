@@ -5,6 +5,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Set neovim as default editor
 export EDITOR="nvim"
+export VISUAL="nvim"
 
 # Set default locations
 export XDG_CONFIG_HOME="$HOME/.config"

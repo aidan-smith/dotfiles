@@ -1,5 +1,3 @@
-# zshrc
-
 # History length and location
 HISTSIZE=10000
 SAVEHIST=10000
@@ -18,8 +16,9 @@ autoload -U colors && colors
 
 autoload -Uz vcs_info
 precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats ':%F{magenta}%b%f'
-zstyle ':vcs_info:git:*' actionformats ':%F{magenta}%b%f-%F{red}%a%f'
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats '(%F{magenta}%b%f)'
+zstyle ':vcs_info:git:*' actionformats '(%F{magenta}%b%f-%F{red}%a%f)'
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 pyvenv() { [[ -n "$VIRTUAL_ENV" ]] && echo "[${VIRTUAL_ENV##*/}]" }

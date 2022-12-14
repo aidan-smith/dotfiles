@@ -15,12 +15,17 @@ export KEYTIMEOUT=1
 # Prompt
 setopt prompt_subst
 autoload -U colors && colors
+
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats ':%F{magenta}%b%f'
+zstyle ':vcs_info:git:*' actionformats ':%F{magenta}%b%f-%F{red}%a%f'
+
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-function pyvenv {
-    [[ -n "$VIRTUAL_ENV" ]] && echo "[${VIRTUAL_ENV##*/}]"
-}
-PROMPT="%F{green}%B%n@%m%f%b:%F{blue}%B%~%f%b%(!.#.$) "
-RPROMPT="\$(pyvenv)"
+pyvenv() { [[ -n "$VIRTUAL_ENV" ]] && echo "[${VIRTUAL_ENV##*/}]" }
+
+PROMPT='%F{green}%B%n@%m%f%b:%F{blue}%B%~%f%b${vcs_info_msg_0_}%(!.#.$) '
+RPROMPT='$(pyvenv)'
 
 # Load completions
 autoload -Uz compinit && compinit

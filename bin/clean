@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+dir=$(dirname "$1")
+cd $dir || exit 1
+
+path="$(pwd -P)/$(basename "$1")"
+base="${path%.*}"
+extn="${path##*.}"
+
+case $extn in
+    tex) rm -rf "${base}".{aux,dvi,fdb_latexmk,fls,log,swp,synctex,synctex.gz} ;;
+    *) echo "Unable to cleanup '${extn}' files." >&2 ; exit 1
+esac

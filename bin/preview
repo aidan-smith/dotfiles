@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+dir=$(dirname "$1")
+cd $dir || exit 1
+
+path="$(pwd -P)/$(basename "$1")"
+base="${path%.*}"
+extn="${path##*.}"
+
+case $extn in
+    pdf) ${READER} "${base}.pdf" & ;;
+    tex) ${READER} "${base}.pdf" & ;;
+    *) echo "Unable to preview '${extn}' files." >&2 ; exit 1
+esac
+

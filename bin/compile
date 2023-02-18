@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+dir=$(dirname "$1")
+cd $dir || exit 1
+
+path="$(pwd -P)/$(basename "$1")"
+base="${path%.*}"
+extn="${path##*.}"
+
+case $extn in
+    c) clang -Wall -Wextra -Werror -std=c11 -O2 "$path" -o "$base" ;;
+    cc | cpp) clang++ -Wall -Wextra -Werror -std=c++17 -O2 "$path" -o "$base" ;;
+    go) go run "$path" ;;
+    rs) cargo build 2> /dev/null || rustc "$path" ;;
+    tex) latexmk -pdf "$path" ;;
+    *) echo "Unable to compile '${extn}' files." >&2 ; exit 1
+esac

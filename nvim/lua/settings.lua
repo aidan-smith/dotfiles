@@ -26,16 +26,30 @@ vim.cmd 'colorscheme material'
 
 vim.api.nvim_create_augroup("augroup", {clear = true})
 
--- Strip trailing whitespaces on save
+-- Strip trailing whitespaces on save.
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = "augroup",
     pattern = "*",
     command = "%s/\\s\\+$//e"
 })
 
--- Enable spell checking for plaintext files
+-- Enable spell checking and line length for prose.
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
     group = "augroup",
     pattern = { "*.txt", "*.md", "*.tex" },
-    command = "setlocal spell"
+    command = "setlocal spell | setlocal tw=80"
+})
+
+-- Cleanup files on nvim exit.
+vim.api.nvim_create_autocmd({"VimLeave"}, {
+    group = "augroup",
+    pattern = "*.tex",
+    command = "!clean %"
+})
+
+-- Close terminal automatically if command exits 0.
+vim.api.nvim_create_autocmd({"TermClose"}, {
+    group = "augroup",
+    pattern = "*",
+    command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif"
 })

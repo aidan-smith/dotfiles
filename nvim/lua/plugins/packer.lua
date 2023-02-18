@@ -60,9 +60,6 @@ return require('packer').startup(function(use)
     -- Telescope
     use 'nvim-telescope/telescope.nvim'
 
-    -- Zen Mode
-    use 'folke/zen-mode.nvim'
-
     -- Sync packer after install
     if packer_bootstrap then
         require('packer').sync()

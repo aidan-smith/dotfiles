@@ -1,7 +1,7 @@
 # History length and location
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
+HISTFILE="$XDG_CACHE_HOME/zsh/history"
 
 # Auto cd into typed directory
 setopt autocd
@@ -9,6 +9,9 @@ setopt autocd
 # vi-mode in shell
 bindkey -v
 export KEYTIMEOUT=1
+
+# Enable extended globbing
+setopt extended_glob
 
 # Prompt
 setopt prompt_subst
@@ -68,8 +71,8 @@ elif [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "freebsd"* ]] then;
 fi
 
 alias grep="grep --color=auto"
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
 
 # Syntax highlighting plugin
 source "$ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" 2> /dev/null

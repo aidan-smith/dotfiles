@@ -3,9 +3,10 @@
 # Add user scripts directory to path
 export PATH="$HOME/.local/bin:$PATH"
 
-# Set neovim as default editor
+# Set neovim as default editor and skim as default reader
 export EDITOR="nvim"
 export VISUAL="nvim"
+export READER="open -a skim"
 
 # Set default locations
 export XDG_CONFIG_HOME="$HOME/.config"

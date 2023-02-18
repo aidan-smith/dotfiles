@@ -42,6 +42,7 @@ set expandtab
 set smarttab
 set tabstop=4
 set shiftwidth=4
+set formatoptions-=cro
 
 augroup autogroup
     autocmd!

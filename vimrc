@@ -12,7 +12,6 @@ set nobackup
 syntax on
 filetype plugin indent on
 let g:netrw_banner=0
-let g:netrw_liststyle=3
 
 nnoremap <Space> <Nop>
 let mapleader = " "
@@ -20,7 +19,7 @@ let mapleader = " "
 set mouse=a
 set number relativenumber
 set splitbelow splitright
-set wrap
+set nowrap
 
 set laststatus=0
 set ruler
@@ -35,19 +34,19 @@ set smartcase
 
 set hlsearch
 set incsearch
-set showmatch
 
 set autoindent
 set expandtab
 set smarttab
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set formatoptions-=cro
 
 augroup autogroup
     autocmd!
     autocmd BufWritePre * :%s/\s\+$//e
-    autocmd FileType text,markdown,tex setlocal spell
+    autocmd FileType text,markdown,tex setlocal spell | setlocal tw=80
 augroup END
 
 nnoremap Y y$

@@ -25,7 +25,6 @@ return require('packer').startup(function(use)
 
     -- LSP
     use 'neovim/nvim-lspconfig'
-    -- use 'anott03/nvim-lspinstall'
 
     -- Treesitter
     use {
@@ -43,10 +42,10 @@ return require('packer').startup(function(use)
     use 'windwp/nvim-autopairs'
 
     -- Snippets
-    use {
-        'L3MON4D3/LuaSnip',
-        tag = 'v<CurrentMajor>.*'
-    }
+    -- use {
+    --     'L3MON4D3/LuaSnip',
+    --     tag = 'v<CurrentMajor>.*'
+    -- }
 
     -- Statusbar
     use 'nvim-lualine/lualine.nvim'
@@ -55,7 +54,7 @@ return require('packer').startup(function(use)
     use 'christoomey/vim-tmux-navigator'
 
     -- NvimTree
-    use 'kyazdani42/nvim-tree.lua'
+    -- use 'kyazdani42/nvim-tree.lua'
 
     -- Telescope
     use 'nvim-telescope/telescope.nvim'

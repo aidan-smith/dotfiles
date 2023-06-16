@@ -5,13 +5,22 @@ DOTFILE_HOME=$(cd "$(dirname "$0")" ; pwd -P)
 
 source "$DOTFILE_HOME/zprofile"
 
+# User scripts
 mkdir "$HOME/.local/bin"
 ln -s "$DOTFILE_HOME/bin/"* "$HOME/.local/bin"
 
-mkdir "$ZDOTDIR"
+# Zsh
+mkdir -p "$ZDOTDIR"
 ln -s "$DOTFILE_HOME/zprofile" "$HOME/.zprofile"
 ln -s "$DOTFILE_HOME/zshrc" "$ZDOTDIR/.zshrc"
 
-mkdir "$XDG_CONFIG_HOME/nvim"
-ln -s "$DOTFILE_HOME/nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
-ln -s "$DOTFILE_HOME/nvim/lua" "$XDG_CONFIG_HOME/nvim/lua"
+# Neovim
+ln -s "$DOTFILE_HOME/nvim" "$XDG_CONFIG_HOME/nvim"
+
+# Tmux
+mkdir -p "$XDG_CONFIG_HOME/tmux"
+ln -s "$DOTFILE_HOME/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
+
+# Alacritty
+mkdir -p "$XDG_CONFIG_HOME/alacritty"
+ln -s "$DOTFILE_HOME/alacritty.yml" "$XDG_CONFIG_HOME/alacritty/alacritty.yml"

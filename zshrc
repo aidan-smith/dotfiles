@@ -2,9 +2,13 @@
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE="$XDG_CACHE_HOME/zsh/history"
+setopt append_history
+
+# Don't throttle background processes
+unsetopt bg_nice
 
 # Auto cd into typed directory
-setopt autocd
+setopt auto_cd
 
 # vi-mode in shell
 bindkey -v
@@ -53,7 +57,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # Fix backspace in vim mode
 bindkey -v '^?' backward-delete-char
 
-# CTRL-R - Paste the selected command from history into the command line
+# Use fzf to fuzzy search history
 __fzfcmd() {
   [ -n "${TMUX_PANE-}" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "${FZF_TMUX_OPTS-}" ]; } &&
     echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"

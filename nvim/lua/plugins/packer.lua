@@ -1,5 +1,4 @@
 -- Automatically install packer
-
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -52,9 +51,6 @@ return require('packer').startup(function(use)
 
     -- C-{hjkl} split nagivation for nvim and tmux
     use 'christoomey/vim-tmux-navigator'
-
-    -- NvimTree
-    -- use 'kyazdani42/nvim-tree.lua'
 
     -- Telescope
     use 'nvim-telescope/telescope.nvim'

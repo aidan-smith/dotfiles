@@ -1,5 +1,4 @@
 vim.opt.mouse = 'a'
--- vim.opt.guicursor = ""
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -31,6 +30,7 @@ vim.g.tmux_navigator_no_mappings = 1
 
 vim.g.material_style = "oceanic"
 vim.cmd 'colorscheme material'
+vim.opt.guicursor = "a:Cursor/Cursor"
 
 vim.api.nvim_create_augroup("augroup", {clear = true})
 
@@ -48,6 +48,13 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
     command = "setlocal spell | setlocal tw=80"
 })
 
+-- Set disable comment continuation with 'o'.
+vim.api.nvim_create_autocmd({"FileType"}, {
+    group = "augroup",
+    pattern = "*",
+    command = "set formatoptions-=o"
+})
+
 -- Cleanup files on nvim exit.
 vim.api.nvim_create_autocmd({"VimLeave"}, {
     group = "augroup",
@@ -61,3 +68,4 @@ vim.api.nvim_create_autocmd({"TermClose"}, {
     pattern = "*",
     command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif"
 })
+

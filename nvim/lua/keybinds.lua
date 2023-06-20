@@ -22,7 +22,6 @@ vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>', opts)
 
 -- Move between buffers
 vim.keymap.set('n', '<leader><leader>', ':b#<CR>', opts)
--- vim.keymap.set('n', '<leader>l', ':b#<CR>', opts)
 
 -- Create splits
 vim.keymap.set('n', '<leader>v', ':vsplit<CR>', opts)
@@ -38,3 +37,5 @@ vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<CR>', opts)
 vim.keymap.set('n', '<leader>c', ':w! | te compile %<CR>i', opts)
 -- vim.keymap.set('n', '<leader>c', ':w! | !compile %<CR><CR>', opts)
 vim.keymap.set('n', '<leader>p', ':!preview %<CR><CR>', opts)
+
+vim.keymap.set('n', '<leader>l', '<Plug>NetrwRefresh', opts)

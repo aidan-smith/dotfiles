@@ -13,7 +13,6 @@ unsetopt bg_nice          # Don't throttle background processes
 bindkey -v
 export KEYTIMEOUT=1
 
-# Prompt
 setopt prompt_subst
 autoload -U colors && colors
 
@@ -53,7 +52,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # Fix backspace in vim mode
 bindkey -v '^?' backward-delete-char
 
-# Enable zmv
+# Enable zmv for batch renaming
 autoload zmv
 
 alias e=$EDITOR

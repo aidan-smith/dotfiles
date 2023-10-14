@@ -31,7 +31,6 @@ return {
                 "make",
                 "markdown",
                 "markdown_inline",
-                "org",
                 "python",
                 "rust",
                 "sql",
@@ -45,40 +44,13 @@ return {
             auto_install = false,
             highlight = {
                 enable = true,
-                additional_vim_regex_highlighting = { "org" }
+                additional_vim_regex_highlighting = false,
             },
             indent = { enable = true },
         },
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
         end,
-    },
-
-    -- Org Mode
-    {
-        "nvim-orgmode/orgmode",
-        dependencies = { "akinsho/org-bullets.nvim" },
-        ft = "org",
-        keys = { "<leader>oa", "<leader>oc" },
-        opts = {
-            org_agenda_files =  "~/org/**/*",
-            org_default_notes_file = "~/org/notes.org",
-                mappings = {
-                    org = {
-                        org_toggle_checkbox = "<C-c>"
-                    }
-                }
-        },
-        config = function(_, opts)
-            require("orgmode").setup_ts_grammar()
-            require("orgmode").setup(opts)
-        end,
-    },
-
-    {
-        "akinsho/org-bullets.nvim",
-        lazy = true,
-        config = true,
     },
 
     -- Fuzzy Finder

@@ -15,6 +15,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 # Set program specific variables
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export GOPATH="$XDG_DATA_HOME/go"
 export HISTFILE="$XDG_DATA_HOME/history"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+source "$CARGO_HOME/env"

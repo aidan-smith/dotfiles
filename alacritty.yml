@@ -1,7 +1,11 @@
 # Alacritty config
 
+env:
+  TERM: xterm-256color
+
 window:
   decorations: none
+  startup_mode: Maximized
   opacity: 1.0
 
 scrolling:
@@ -11,19 +15,19 @@ font:
   size: 12.0
 
   normal:
-    family: MesloLGS NF
+    family: MesloLGS Nerd Font Mono
     style: Regular
 
   bold:
-    family: MesloLGS NF
+    family: MesloLGS Nerd Font Mono
     style: Bold
 
   italic:
-    family: MesloLGS NF
+    family: MesloLGS Nerd Font Mono
     style: Italic
 
   bold_italic:
-    family: MesloLGS NF
+    family: MesloLGS Nerd Font Mono
     style: Bold Italic
 
 colors:

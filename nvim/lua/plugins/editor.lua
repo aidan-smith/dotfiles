@@ -78,4 +78,15 @@ return {
         },
         config = true,
     },
+
+    -- Fugitive
+    {
+        "tpope/vim-fugitive",
+        cmd = "Git",
+        keys = {
+            { "<leader>gs", "<cmd>above Git<CR>", noremap = true, silent = true },
+            { "<leader>gb", "<cmd>Git blame<CR>", noremap = true, silent = true },
+            { "<leader>gd", "<cmd>above Git diff<CR>", noremap = true, silent = true },
+        },
+    },
 }

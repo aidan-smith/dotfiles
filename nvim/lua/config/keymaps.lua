@@ -17,7 +17,7 @@ vim.keymap.set('i', '<C-l>', '<C-g>u<Esc>[s1z=`]a<C-g>u', opts)
 -- end, {noremap = true, silent = true, expr = true})
 
 -- Toggle netrw
--- vim.keymap.set('n', '<C-f>', ':Vexplore<CR>', opts)
+-- vim.keymap.set('n', '<C-f>', vim.cmd.Ex, opts)
 
 -- Move between buffers
 vim.keymap.set('n', '<leader><leader>', ':b#<CR>', opts)

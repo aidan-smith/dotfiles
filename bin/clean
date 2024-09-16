@@ -8,6 +8,6 @@ base="${path%.*}"
 extn="${path##*.}"
 
 case $extn in
-    tex) rm -rf "${base}".{aux,dvi,fdb_latexmk,fls,log,out,swp,synctex,synctex.gz} ;;
+    tex) rm -rf "${base}".{aux,bbl,bcf,blg,dvi,fdb_latexmk,fls,log,nav,out,run.xml,snm,swp,synctex,synctex.gz,toc} ;;
     *) echo "Unable to cleanup '${extn}' files." >&2 ; exit 1
 esac

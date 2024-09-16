@@ -75,6 +75,7 @@ fi
 alias grep="grep --color=auto"
 alias egrep="grep -E --color=auto"
 alias fgrep="grep -F --color=auto"
+alias pwd="pwd -P"
 
 # Use fzf to fuzzy search history
 __fzfcmd() {

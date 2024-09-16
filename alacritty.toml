@@ -1,0 +1,62 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+decorations = "none"
+opacity = 1.0
+# startup_mode = "Windowed"
+startup_mode = "Maximized"
+
+[scrolling]
+history = 10000
+
+[font]
+size = 12.0
+
+[font.normal]
+family = "MesloLGS Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
+family = "MesloLGS Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "MesloLGS Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "MesloLGS Nerd Font Mono"
+style = "Bold Italic"
+
+[colors.primary]
+background = "#263137"
+foreground = "#eceef0"
+
+[colors.cursor]
+cursor = "#edeeed"
+text = "#000000"
+
+[colors.selection]
+background = "#607c8b"
+text = "#eceef0"
+
+[colors.normal]
+black = "#546d79"
+blue = "#40c4fe"
+cyan = "#64fcda"
+green = "#69f0ad"
+magenta = "#ff3f80"
+red = "#ff5151"
+white = "#fefefe"
+yellow = "#ffd73f"
+
+[colors.bright]
+black = "#b0bec4"
+blue = "#80d7fe"
+cyan = "#a7fdeb"
+green = "#b9f6c9"
+magenta = "#ff80ab"
+red = "#ff8980"
+white = "#fefefe"
+yellow = "#ffe47e"

@@ -1,7 +1,8 @@
 #!/usr/bin/env zsh
 
-# Add user scripts directory to path
+# Add user directories to path
 export PATH="$HOME/.local/bin:$PATH"
+typeset -U path # Remove duplicates from `path` array (mirrors `PATH`)
 
 # Set neovim as default editor and skim as default reader
 export EDITOR="nvim"

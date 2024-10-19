@@ -23,10 +23,10 @@ zstyle ':vcs_info:git:*' formats '(%F{magenta}%b%f)'
 zstyle ':vcs_info:git:*' actionformats '(%F{magenta}%b%f|%F{red}%a%f)'
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-pyvenv() { [[ -n "$VIRTUAL_ENV" ]] && echo "[${VIRTUAL_ENV##*/}]" }
+venv() { [[ -n "$VIRTUAL_ENV" ]] && echo "[${VIRTUAL_ENV##*/}]" }
 
 PROMPT='%F{green}%B%n@%m%f%b:%F{blue}%B%~%f%b${vcs_info_msg_0_}%(!.#.$) '
-RPROMPT='$(pyvenv)'
+RPROMPT='$(venv)'
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -78,6 +78,7 @@ alias fgrep="grep -F --color=auto"
 alias pwd="pwd -P"
 
 # Use fzf to fuzzy search history
+# See: https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
 __fzfcmd() {
   [ -n "${TMUX_PANE-}" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "${FZF_TMUX_OPTS-}" ]; } &&
     echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"

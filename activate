@@ -2,10 +2,7 @@
 
 DOTFILE_HOME=$(cd "$(dirname "$0")" ; pwd -P)
 
+source "$DOTFILE_HOME/zshenv"
 source "$DOTFILE_HOME/zprofile"
 source "$DOTFILE_HOME/zshrc"
 tmux source-file "$DOTFILE_HOME/tmux.conf"
-
-mkdir -p "$XDG_CONFIG_HOME"
-mkdir -p "$XDG_CACHE_HOME"
-mkdir -p "$XDG_DATA_HOME"

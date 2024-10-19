@@ -1,0 +1,13 @@
+[user]
+	name = Aidan Smith
+	email = aismith@jumptrading.com
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[merge]
+	conflictstyle = zdiff3
+[diff]
+	algorithm = histogram
+[alias]
+	lol = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit

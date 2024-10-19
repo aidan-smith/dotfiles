@@ -21,4 +21,4 @@ export GOPATH="$XDG_DATA_HOME/go"
 export HISTFILE="$XDG_DATA_HOME/history"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-source "$CARGO_HOME/env"
+source "$CARGO_HOME/env" 2> /dev/null

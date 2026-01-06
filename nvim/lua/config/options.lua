@@ -28,3 +28,4 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.g.netrw_banner = 0
+vim.opt.shortmess = vim.opt.shortmess + 'I'

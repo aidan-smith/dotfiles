@@ -14,11 +14,11 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
     command = "setlocal spell | setlocal tw=80"
 })
 
--- Set disable comment continuation with 'o'.
+-- Set formatoptions after loading plugins.
 vim.api.nvim_create_autocmd({"FileType"}, {
     group = "augroup",
     pattern = "*",
-    command = "set formatoptions-=o"
+    command = "set formatoptions=tcqjr"
 })
 
 -- Cleanup files on nvim exit.

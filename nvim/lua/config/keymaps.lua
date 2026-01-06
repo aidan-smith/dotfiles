@@ -32,6 +32,10 @@ vim.keymap.set('n', '<C-j>', ':TmuxNavigateDown<CR>', opts)
 vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<CR>', opts)
 vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<CR>', opts)
 
+-- Switch between tabs using {[,]} + t
+vim.keymap.set('n', '[t', ':tabprevious<CR>', opts)
+vim.keymap.set('n', ']t', ':tabnext<CR>', opts)
+
 -- Compile and preview files
 vim.keymap.set('n', '<leader>c', ':w! | te compile %<CR>i', opts)
 -- vim.keymap.set('n', '<leader>c', ':w! | !compile %<CR><CR>', opts)

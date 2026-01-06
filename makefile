@@ -1,4 +1,4 @@
-.PHONY: install all zsh vim nvim tmux alacritty scripts dirs gdbinit
+.PHONY: install all zsh vim nvim tmux alacritty scripts dirs gdbinit gitconfig clean
 
 DOTFILE_HOME := $(shell cd "$(dirname "$0")" ; pwd -P)
 OBJS :=  $(HOME)/.zshenv                              \
@@ -51,5 +51,5 @@ dirs:
 	mkdir -p "$(XDG_CACHE_HOME)"
 	mkdir -p "$(XDG_DATA_HOME)"
 
-clean-all:
+clean:
 	rm -rf $(OBJS)

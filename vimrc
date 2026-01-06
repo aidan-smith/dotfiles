@@ -41,12 +41,12 @@ set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set formatoptions-=cro
 
 augroup autogroup
     autocmd!
     autocmd BufWritePre * :%s/\s\+$//e
     autocmd FileType text,markdown,tex setlocal spell | setlocal tw=80
+    autocmd FileType * set formatoptions=tcqjr
 augroup END
 
 nnoremap Y y$

@@ -1,6 +1,6 @@
 # History length and location
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=10000000
+SAVEHIST=10000000
 HISTFILE="$XDG_CACHE_HOME/zsh/history"
 
 setopt inc_append_history # Append commands to histfile immediately
@@ -17,7 +17,7 @@ setopt prompt_subst
 autoload -U colors && colors
 
 autoload -Uz vcs_info
-precmd() { vcs_info }
+precmd_functions+=(vcs_info)
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' formats '(%F{magenta}%b%f)'
 zstyle ':vcs_info:git:*' actionformats '(%F{magenta}%b%f|%F{red}%a%f)'

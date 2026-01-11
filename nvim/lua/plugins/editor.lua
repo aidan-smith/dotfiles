@@ -2,20 +2,27 @@ return {
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "main",
         version = false,
         build = ":TSUpdate",
-        event = { "BufReadPost", "BufNewFile", },
-        cmd = { "TSUpdateSync" },
+        event = { "BufReadPost", "BufNewFile" },
+        cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
         opts = {
             ensure_installed = {
+                "asm",
+                "awk",
                 "bash",
                 "c",
                 "cmake",
                 "comment",
                 "cpp",
                 "css",
+                "csv",
+                "cuda",
                 "diff",
                 "dockerfile",
+                "editorconfig",
+                "git_config",
                 "git_rebase",
                 "gitattributes",
                 "gitcommit",
@@ -38,45 +45,49 @@ return {
                 "typescript",
                 "vim",
                 "vimdoc",
+                "xml",
                 "yaml",
             },
-            sync_install = false,
-            auto_install = false,
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-            },
-            indent = { enable = true },
         },
         config = function(_, opts)
-            require("nvim-treesitter.configs").setup(opts)
+            require("nvim-treesitter").setup(opts)
+
+            local installed = require("nvim-treesitter").get_installed()
+            local missing = vim.tbl_filter(function(parser)
+                return not vim.tbl_contains(installed, parser)
+            end, opts.ensure_installed)
+
+            if #missing > 0 then
+                require("nvim-treesitter").install(missing, { summary = true })
+            end
+
+            vim.api.nvim_create_autocmd('FileType', {
+                group = vim.api.nvim_create_augroup('UserTSConfig', { clear = true }),
+                pattern = require("nvim-treesitter").get_installed(),
+                callback = function(ev)
+                    vim.treesitter.start()
+                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+                    vim.wo[0][0].foldmethod = 'expr'
+                end,
+            })
         end,
     },
 
     -- Fuzzy Finder
     {
-        "nvim-telescope/telescope.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
-        cmd = "Telescope",
+        "ibhagwan/fzf-lua",
+        dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+        cmd = "FzfLua",
         keys = {
-            { "<leader>f", "<cmd>Telescope find_files<CR>", noremap = true, silent = true },
-            { "<leader>b", "<cmd>Telescope buffers<CR>", noremap = true, silent = true },
-            { "<leader>/",  "<cmd>Telescope live_grep<CR>", noremap = true, silent = true },
+            { "<leader>f", "<cmd>FzfLua files<CR>", noremap = true, silent = true },
+            { "<leader>b", "<cmd>FzfLua buffers<CR>", noremap = true, silent = true },
+            { "<leader>/",  "<cmd>FzfLua live_grep<CR>", noremap = true, silent = true },
         },
         opts = {
-            defaults = {
-                mappings = {
-                    i = {
-                        ["<M-f>"] = false,
-                        ["<M-k>"] = false,
-                    },
-                    n = {
-                        ["<C-c>"] = "close",
-                    },
-                },
-            },
+            { "borderless", "hide" },
+            defaults = { file_icons = true },
         },
-        config = true,
     },
 
     -- Fugitive

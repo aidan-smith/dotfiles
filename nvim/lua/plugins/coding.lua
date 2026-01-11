@@ -6,18 +6,11 @@ return {
         config = true,
     },
 
-    -- Comment keymap
     {
-        "numToStr/Comment.nvim",
+        "folke/ts-comments.nvim",
+        opts = {},
         event = "VeryLazy",
-        config = true
     },
-    -- {
-    --     "echasnovski/mini.comment",
-    --     version = false,
-    --     event = "VeryLazy",
-    --     config = true
-    -- },
 
     -- Auto-close characters
     {

@@ -28,10 +28,3 @@ path=(
     "$NPM_CONFIG_PREFIX/bin"
     $path
 )
-
-path=(
-  "/usr/local/opt/llvm/bin"
-  "/usr/local/opt/bison/bin"
-  "/usr/local/smlnj/bin"
-  $path
-)

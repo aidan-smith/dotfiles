@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+force=0
+skipped_paths=()
+
+for arg in "$@"; do
+    case "$arg" in
+        -f|--force)
+            force=1
+            ;;
+        *)
+            printf 'usage: %s [-f|--force]\n' "$(basename "$0")" >&2
+            exit 1
+            ;;
+    esac
+done
+
+install_zshenv() {
+    local dst="$HOME/.zshenv"
+
+    if [[ -e "$dst" ]]; then
+        if [[ -L "$dst" ]]; then
+            rm "$dst"
+        elif (( force )); then
+            rm -rf "$dst"
+        else
+            skipped_paths+=("$dst")
+            return 0
+        fi
+    fi
+
+    printf 'ZDOTDIR="%s"\n' "$ZDOTDIR" > "$HOME/.zshenv"
+}
+
+link() {
+    local src="$1"
+    local dst="$2"
+
+    if [[ -e "$dst" ]]; then
+        if [[ -L "$dst" ]]; then
+            rm "$dst"
+        elif (( force )); then
+            rm -rf "$dst"
+        else
+            skipped_paths+=("$dst")
+            return 0
+        fi
+    fi
+
+    mkdir -p "$(dirname "$dst")"
+    ln -s "$src" "$dst"
+}
+
+is_remote() {
+    [ -n "${SSH_CONNECTION-}" ] || \
+    [ -n "${SSH_CLIENT-}"     ] || \
+    [ -n "${SSH_TTY-}"        ] || \
+    [ -n "${MOSH_IP-}"        ]
+}
+
+is_alacritty() {
+    [ -n "${ALACRITTY_SOCKET-}"    ] && \
+    [ -n "${ALACRITTY_WINDOW_ID-}" ]
+}
+
+ROOT=$(cd "$(dirname "$0")" ; pwd -P)
+
+source "$ROOT/zprofile"
+
+mkdir -p                     \
+    "$XDG_CONFIG_HOME"       \
+    "$XDG_DATA_HOME"         \
+    "$XDG_CACHE_HOME"        \
+    "$XDG_STATE_HOME"        \
+    "$CARGO_HOME"            \
+    "$RUSTUP_HOME"           \
+    "$GOPATH"                \
+    "$NPM_CONFIG_PREFIX"     \
+    "$NPM_CONFIG_CACHE"      \
+    "$HOME/.local/bin"       \
+    "$TMPDIR"                \
+    "$(dirname "$HISTFILE")" \
+    "$ZDOTDIR"
+
+chmod 700 "$TMPDIR"
+
+install_zshenv
+
+link "$ROOT/zprofile"      "$ZDOTDIR/.zprofile"
+link "$ROOT/zshrc"         "$ZDOTDIR/.zshrc"
+link "$ROOT/tmux.conf"     "$XDG_CONFIG_HOME/tmux/tmux.conf"
+link "$ROOT/nvim/lua"      "$XDG_CONFIG_HOME/nvim/lua"
+link "$ROOT/nvim/init.lua" "$XDG_CONFIG_HOME/nvim/init.lua"
+link "$ROOT/vimrc"         "$HOME/.vimrc"
+link "$ROOT/gitconfig"     "$HOME/.gitconfig"
+link "$ROOT/gdbinit"       "$HOME/.gdbinit"
+
+if ! is_remote && is_alacritty; then
+    link "$ROOT/alacritty.toml" "$XDG_CONFIG_HOME/alacritty/alacritty.toml"
+fi
+
+if (( ${#skipped_paths[@]} > 0 )); then
+    printf 'Skipped existing paths. Run with --force to overwrite:\n' >&2
+    for path in "${skipped_paths[@]}"; do
+        printf '    %s\n' "$path" >&2
+    done
+
+    exit 1
+fi

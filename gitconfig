@@ -1,13 +1,24 @@
 [user]
-	name = Aidan Smith
-	email = adsmith2@andrew.cmu.edu
+    name = Aidan Smith
+    email = adsmith2@andrew.cmu.edu
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [color]
-	ui = auto
+    ui = auto
 [merge]
-	conflictstyle = zdiff3
+    conflictstyle = zdiff3
 [diff]
-	algorithm = histogram
+    algorithm = histogram
 [alias]
-	lol = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lol = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    up = "!f() {                                                                                                                       \
+        b=$(git symbolic-ref -q --short HEAD)                         || { echo  'up: not on a branch (detached HEAD)' >&2; exit 1; }; \
+        git remote get-url upstream >/dev/null 2>&1                   || { echo  'up: no remote named upstream'        >&2; exit 1; }; \
+        git ls-remote --exit-code --heads upstream $b >/dev/null 2>&1 || { echo \"up: upstream has no branch '$b'\"    >&2; exit 1; }; \
+        git fetch upstream $b && git rebase upstream/$b && git push --force-with-lease origin HEAD;                                    \
+    }; f"
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true

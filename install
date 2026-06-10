@@ -69,19 +69,20 @@ ROOT=$(cd "$(dirname "$0")" ; pwd -P)
 
 source "$ROOT/zprofile"
 
-mkdir -p                     \
-    "$XDG_CONFIG_HOME"       \
-    "$XDG_DATA_HOME"         \
-    "$XDG_CACHE_HOME"        \
-    "$XDG_STATE_HOME"        \
-    "$CARGO_HOME"            \
-    "$RUSTUP_HOME"           \
-    "$GOPATH"                \
-    "$NPM_CONFIG_PREFIX"     \
-    "$NPM_CONFIG_CACHE"      \
-    "$HOME/.local/bin"       \
-    "$TMPDIR"                \
-    "$(dirname "$HISTFILE")" \
+mkdir -p                        \
+    "$XDG_CONFIG_HOME"          \
+    "$XDG_DATA_HOME"            \
+    "$XDG_CACHE_HOME"           \
+    "$XDG_STATE_HOME"           \
+    "$CARGO_HOME"               \
+    "$RUSTUP_HOME"              \
+    "$GOPATH"                   \
+    "$NPM_CONFIG_PREFIX"        \
+    "$NPM_CONFIG_CACHE"         \
+    "$HOME/.local/bin"          \
+    "$TMPDIR"                   \
+    "$(dirname "$HISTFILE")"    \
+    "$(dirname "$GDBHISTFILE")" \
     "$ZDOTDIR"
 
 chmod 700 "$TMPDIR"

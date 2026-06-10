@@ -14,7 +14,8 @@ export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TMPDIR="$HOME/.local/tmp"
-export HISTFILE="$XDG_STATE_HOME/history"
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
+export GDBHISTFILE="$XDG_STATE_HOME/gdb/history"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 [ -n "${ZSH_VERSION-}" ] || return 0
